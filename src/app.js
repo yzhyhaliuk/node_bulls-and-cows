@@ -20,7 +20,7 @@ function playGame() {
 
     const result = getBullsAndCows(+guessNumber, realNumber);
 
-    if ((result.bulls = 4 && result.cows === 4)) {
+    if (result.bulls === 4 && result.cows === 4) {
       console.log('Congratulations! You won!');
 
       return terminal.close();

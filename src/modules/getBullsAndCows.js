@@ -20,7 +20,7 @@ function getBullsAndCows(userInput, numberToGuess) {
     (num, i) => input.includes(num) && number[i] !== input[i],
   );
 
-  return { bulls: bulls.length, cows: cows.length };
+  return { bulls: bulls.length || 0, cows: cows.length || 0 };
 }
 
 module.exports = {
