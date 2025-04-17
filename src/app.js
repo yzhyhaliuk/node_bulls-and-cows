@@ -4,15 +4,31 @@
 const { checkIsValidUserInput } = require('./modules/checkIsValidUserInput');
 const { generateRandomNumber } = require('./modules/generateRandomNumber');
 const { getBullsAndCows } = require('./modules/getBullsAndCows');
+const readline = require('readline');
+
+const terminal = readline.createInterface(process.stdin, process.stdout);
 
 const realNumber = generateRandomNumber();
 
 function playGame() {
-  const guessNumber = process.argv.slice(2)[0];
+  terminal.question('Enter your guess:', (guessNumber) => {
+    if (!checkIsValidUserInput(guessNumber)) {
+      console.log('Invalid input!');
 
-  if (checkIsValidUserInput(guessNumber)) {
-    console.log(getBullsAndCows(+guessNumber, realNumber));
-  }
+      return playGame();
+    }
+
+    const result = getBullsAndCows(+guessNumber, realNumber);
+
+    if ((result.bulls = 4 && result.cows === 4)) {
+      console.log('Congratulations! You won!');
+
+      return terminal.close();
+    }
+
+    console.log(result);
+    playGame();
+  });
 }
 
 playGame();
